@@ -1,0 +1,12 @@
+/* Настройки */
+@import "settings/variables";
+@import "settings/mixins";
+@import "settings/fonts";
+@import "settings/normalize";
+
+/* Основа */
+@import "global/base";
+@import "global/container";
+
+/* Блоки */
+@import "blocks/example/style";
