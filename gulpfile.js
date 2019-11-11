@@ -26,7 +26,7 @@ const COMPONENTS = SOURCE + '/components';
 const BLOCKS = COMPONENTS + '/blocks';
 
 const jsFiles = [
-  BLOCKS + '/example/js/script.js'
+  COMPONENTS + '/main.js'
 ];
 
 // HTML
@@ -46,7 +46,7 @@ task('html', function () {
 
 // SASS в CSS
 task('css', function () {
-  return src(COMPONENTS + '/style.scss')
+  return src(COMPONENTS + '/main.scss')
   .pipe(plumber())
   .pipe(sourcemaps.init())
   .pipe(sass())
