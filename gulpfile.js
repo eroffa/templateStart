@@ -30,6 +30,7 @@ const jsFiles = [
 ];
 
 const jsLibs = [
+  SOURCE + '/libs/modernizr.js',
   SOURCE + '/libs/picturefill/src/picturefill.js'
 ];
 
