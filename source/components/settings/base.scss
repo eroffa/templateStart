@@ -62,11 +62,14 @@ a {
 }
 
 .top-message {
-  position: absolute;
-  left: 0;
-
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
   width: 100%;
 
-  color: white;
+  text-align: center;
+  color: #fff;
+
   background-color: red;
 }
