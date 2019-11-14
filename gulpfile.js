@@ -55,6 +55,7 @@ task('css', function () {
   ]))
   .pipe(csso())
   .pipe(rename({
+    basename: 'style',
     suffix: '.min'
   }))
   .pipe(sourcemaps.write('.'))
@@ -65,11 +66,13 @@ task('css', function () {
 // JS import
 task('js', function () {
   return src(jsFiles)
+  .pipe(sourcemaps.init())
   .pipe(concat('script.js'))
   .pipe(uglify())
   .pipe(rename({
     suffix: '.min'
   }))
+  .pipe(sourcemaps.write('.'))
   .pipe(dest(BUILD + '/js'));
 });
 
@@ -112,6 +115,13 @@ task('webp', function () {
 // SVG спрайт
 task('sprite', function () {
   return src(COMPONENTS + '/blocks/*/img/**/icon-*.svg')
+  .pipe(imagemin([
+    svgo({
+      plugins: [
+        {removeViewBox: false}
+      ]
+    })
+  ]))
   .pipe(svgstore({
     inlineSvg: true
   }))
@@ -124,7 +134,8 @@ task('copy', function () {
   return src([
     SOURCE + '/fonts/**/*.{woff,woff2}',
     SOURCE + '/favicons/*.{icon,png,svg}',
-    SOURCE + '/site.webmanifest'
+    SOURCE + '/site.webmanifest',
+    SOURCE + '/libs/*.js'
   ], {base: SOURCE})
   .pipe(dest(BUILD));
 });
@@ -161,6 +172,7 @@ task('server', function () {
   });
 
   watch(SOURCE + '/*.html', series('html')).on('change', sync.reload);
+  watch(SOURCE + '/includes/*.html', series('html')).on('change', sync.reload);
   watch(COMPONENTS + '/**/*.{sass,scss}', {usePolling: true}, series('css'));
   watch(COMPONENTS + '/**/*.js', {usePolling: true}, series('js')).on('change', sync.reload);
   watch(COMPONENTS + '/**/icon-*.svg', series('sprite', 'html', 'reload'));
