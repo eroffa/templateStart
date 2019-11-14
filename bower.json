@@ -1,0 +1,23 @@
+{
+  "name": "template",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "“Sergey <“erofsey@gmail.com”>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/eroffa/templateHTML",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "source/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "picturefill": "^3.0.3",
+    "normalize-css": "^8.0.1"
+  }
+}
