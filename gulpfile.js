@@ -29,6 +29,10 @@ const jsFiles = [
   COMPONENTS + '/main.js'
 ];
 
+const jsLibs = [
+  SOURCE + '/libs/picturefill/src/picturefill.js'
+];
+
 // HTML
 task('html', function () {
   return src(SOURCE + '/*.html')
@@ -65,7 +69,7 @@ task('css', function () {
 
 // JS import
 task('js', function () {
-  return src(jsFiles)
+  return src(jsLibs, jsFiles)
   .pipe(sourcemaps.init())
   .pipe(concat('script.js'))
   .pipe(uglify())
